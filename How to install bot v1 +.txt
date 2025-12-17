@@ -1,0 +1,33 @@
+apt install python3-pip -y
+
+mkdir -p ~/.config/pip && echo -e "[global]\nbreak-system-packages = true" > ~/.config/pip/pip.conf
+
+
+sudo nano /etc/systemd/system/blocknodes.service
+
+[Unit]
+Description=BLOCK NODES Discord Bot
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/root
+
+# Environment Variables
+Environment="PYTHONUNBUFFERED=1"
+Environment="DISCORD_TOKEN=YOUR_DISCORD_BOT_TOKEN"
+Environment="MAIN_ADMIN_ID=YOUR_ADMIN_ID"
+
+# Start Bot
+ExecStart=/usr/bin/python3 /root/bot.py
+
+# Auto-Restart
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+
+
+sudo systemctl daemon-reload
+sudo systemctl restart blocknodes
