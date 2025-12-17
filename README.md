@@ -6,5 +6,5 @@ DUkhi Aatma
 
 git clone https://github.com/jiupakar-jpg/blocknodesbot.git
 cd blocknodesbot
-bash isntall.sh
+bash installl.sh
 ```
